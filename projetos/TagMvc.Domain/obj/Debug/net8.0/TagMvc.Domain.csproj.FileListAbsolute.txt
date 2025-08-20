@@ -1,0 +1,11 @@
+C:\projetos\TagMvc.Domain\bin\Debug\net8.0\TagMvc.Domain.deps.json
+C:\projetos\TagMvc.Domain\bin\Debug\net8.0\TagMvc.Domain.dll
+C:\projetos\TagMvc.Domain\bin\Debug\net8.0\TagMvc.Domain.pdb
+C:\projetos\TagMvc.Domain\obj\Debug\net8.0\TagMvc.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\projetos\TagMvc.Domain\obj\Debug\net8.0\TagMvc.Domain.AssemblyInfoInputs.cache
+C:\projetos\TagMvc.Domain\obj\Debug\net8.0\TagMvc.Domain.AssemblyInfo.cs
+C:\projetos\TagMvc.Domain\obj\Debug\net8.0\TagMvc.Domain.csproj.CoreCompileInputs.cache
+C:\projetos\TagMvc.Domain\obj\Debug\net8.0\TagMvc.Domain.dll
+C:\projetos\TagMvc.Domain\obj\Debug\net8.0\refint\TagMvc.Domain.dll
+C:\projetos\TagMvc.Domain\obj\Debug\net8.0\TagMvc.Domain.pdb
+C:\projetos\TagMvc.Domain\obj\Debug\net8.0\ref\TagMvc.Domain.dll

@@ -1,0 +1,15 @@
+C:\projetos\TagMvc.Infrastructure\obj\Debug\net8.0\TagMvc.Infrastructure.csproj.AssemblyReference.cache
+C:\projetos\TagMvc.Infrastructure\obj\Debug\net8.0\TagMvc.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\projetos\TagMvc.Infrastructure\obj\Debug\net8.0\TagMvc.Infrastructure.AssemblyInfoInputs.cache
+C:\projetos\TagMvc.Infrastructure\obj\Debug\net8.0\TagMvc.Infrastructure.AssemblyInfo.cs
+C:\projetos\TagMvc.Infrastructure\obj\Debug\net8.0\TagMvc.Infrastructure.csproj.CoreCompileInputs.cache
+C:\projetos\TagMvc.Infrastructure\bin\Debug\net8.0\TagMvc.Infrastructure.deps.json
+C:\projetos\TagMvc.Infrastructure\bin\Debug\net8.0\TagMvc.Infrastructure.dll
+C:\projetos\TagMvc.Infrastructure\bin\Debug\net8.0\TagMvc.Infrastructure.pdb
+C:\projetos\TagMvc.Infrastructure\bin\Debug\net8.0\TagMvc.Domain.dll
+C:\projetos\TagMvc.Infrastructure\bin\Debug\net8.0\TagMvc.Domain.pdb
+C:\projetos\TagMvc.Infrastructure\obj\Debug\net8.0\TagMvc.I.0B89B9C2.Up2Date
+C:\projetos\TagMvc.Infrastructure\obj\Debug\net8.0\TagMvc.Infrastructure.dll
+C:\projetos\TagMvc.Infrastructure\obj\Debug\net8.0\refint\TagMvc.Infrastructure.dll
+C:\projetos\TagMvc.Infrastructure\obj\Debug\net8.0\TagMvc.Infrastructure.pdb
+C:\projetos\TagMvc.Infrastructure\obj\Debug\net8.0\ref\TagMvc.Infrastructure.dll
