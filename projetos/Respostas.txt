@@ -1,3 +1,5 @@
+Banco utilizado: PostgreSQL
+
 Login e senha da aplicação
 admin@localhost.com
 Admin@123
