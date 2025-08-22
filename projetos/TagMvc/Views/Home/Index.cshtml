@@ -1,8 +1,58 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model TagMvc.ViewModels.HomeViewModels.HomeIndexViewModel
+@using Microsoft.AspNetCore.Identity
+@using TagMvc.Domain.Entities
+
+@inject SignInManager<Usuario> SignInManager
+@inject UserManager<Usuario> UserManager
+
+@{
+    ViewData["Title"] = "Página Inicial";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Últimas Notícias</h1>
 </div>
+<hr />
+<div class="text-center">
+  <a asp-controller="Noticia" asp-action="Create">Publicar Notícia</a>
+</div>
+<hr />
+@if (Model != null && Model.Noticia.Any())
+{
+    foreach (var noticia in Model.Noticia)
+    {
+        <div class="card mb-4">
+            <div class="card-body">
+                <h2 class="card-title">@noticia.Titulo</h2>
+                <p class="card-text">@noticia.Texto</p>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    if (noticia.UsuarioId == UserManager.GetUserId(User) || User.IsInRole("Admin"))
+                    {
+                        <a asp-controller="Noticia" asp-action="Edit" asp-route-id="@noticia.Id" class="btn btn-sm btn-outline-primary">Editar</a>
+                    }
+                    if (User.IsInRole("Admin"))
+                    {
+                        <a asp-controller="Noticia" asp-action="Delete" asp-route-id="@noticia.Id" class="btn btn-sm btn-outline-danger">Excluir</a>
+                    }
+                }
+            </div>
+            @if (noticia.NoticiaTags != null && noticia.NoticiaTags.Any())
+            {
+                <div class="card-footer bg-transparent border-top-0 pt-0">
+                    @foreach (var noticiaTag in noticia.NoticiaTags)
+                    {
+                        <span class="badge bg-secondary me-1">@noticiaTag.Tag.Descricao</span>
+                    }
+                </div>
+            }
+            <div class="card-footer text-muted">
+                Publicado por @(noticia.Usuario?.Nome ?? "Autor Desconhecido")
+            </div>
+        </div>
+    }
+}
+else
+{
+    <p>Nenhuma notícia foi publicada ainda. Seja o primeiro!</p>
+}

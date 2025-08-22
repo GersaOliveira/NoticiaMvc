@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\projetos\\TagMvc.Application\\TagMvc.Application.csproj": {}
+    "c:\\Git\\NoticiaMvc\\projetos\\TagMvc.Application\\TagMvc.Application.csproj": {}
   },
   "projects": {
-    "C:\\projetos\\TagMvc.Application\\TagMvc.Application.csproj": {
+    "c:\\Git\\NoticiaMvc\\projetos\\TagMvc.Application\\TagMvc.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\projetos\\TagMvc.Application\\TagMvc.Application.csproj",
+        "projectUniqueName": "c:\\Git\\NoticiaMvc\\projetos\\TagMvc.Application\\TagMvc.Application.csproj",
         "projectName": "TagMvc.Application",
-        "projectPath": "C:\\projetos\\TagMvc.Application\\TagMvc.Application.csproj",
+        "projectPath": "c:\\Git\\NoticiaMvc\\projetos\\TagMvc.Application\\TagMvc.Application.csproj",
         "packagesPath": "C:\\Users\\EX_IEL17\\.nuget\\packages\\",
-        "outputPath": "C:\\projetos\\TagMvc.Application\\obj\\",
+        "outputPath": "c:\\Git\\NoticiaMvc\\projetos\\TagMvc.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -34,8 +34,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\projetos\\TagMvc.Domain\\TagMvc.Domain.csproj": {
-                "projectPath": "C:\\projetos\\TagMvc.Domain\\TagMvc.Domain.csproj"
+              "c:\\Git\\NoticiaMvc\\projetos\\TagMvc.Domain\\TagMvc.Domain.csproj": {
+                "projectPath": "c:\\Git\\NoticiaMvc\\projetos\\TagMvc.Domain\\TagMvc.Domain.csproj"
               }
             }
           }
@@ -74,14 +74,14 @@
         }
       }
     },
-    "C:\\projetos\\TagMvc.Domain\\TagMvc.Domain.csproj": {
+    "c:\\Git\\NoticiaMvc\\projetos\\TagMvc.Domain\\TagMvc.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\projetos\\TagMvc.Domain\\TagMvc.Domain.csproj",
+        "projectUniqueName": "c:\\Git\\NoticiaMvc\\projetos\\TagMvc.Domain\\TagMvc.Domain.csproj",
         "projectName": "TagMvc.Domain",
-        "projectPath": "C:\\projetos\\TagMvc.Domain\\TagMvc.Domain.csproj",
+        "projectPath": "c:\\Git\\NoticiaMvc\\projetos\\TagMvc.Domain\\TagMvc.Domain.csproj",
         "packagesPath": "C:\\Users\\EX_IEL17\\.nuget\\packages\\",
-        "outputPath": "C:\\projetos\\TagMvc.Domain\\obj\\",
+        "outputPath": "c:\\Git\\NoticiaMvc\\projetos\\TagMvc.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -120,6 +120,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.Extensions.Identity.Stores": {
+              "target": "Package",
+              "version": "[8.0.4, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

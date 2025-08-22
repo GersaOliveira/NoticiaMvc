@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TagMvc.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d5a94ed2218a4a4d8363f0d3cea44ba7a2c394a9")]
 [assembly: System.Reflection.AssemblyProductAttribute("TagMvc.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TagMvc.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

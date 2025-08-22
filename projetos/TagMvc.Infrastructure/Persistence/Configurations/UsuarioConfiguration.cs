@@ -8,18 +8,11 @@ public class UsuarioConfiguration : IEntityTypeConfiguration<Usuario>
 {
     public void Configure(EntityTypeBuilder<Usuario> builder)
     {
-        builder.ToTable("Usuarios");
-        builder.HasKey(u => u.Id);
-
+        // As propriedades herdadas de IdentityUser (Id, Email, PasswordHash, etc.)
+        // já são configuradas pelo IdentityDbContext.
+        // A tabela também já é nomeada para "AspNetUsers" por padrão.
+        // Portanto, configurei apenas as propriedades personalizadas.
         builder.Property(u => u.Nome)
-            .HasMaxLength(250)
-            .IsRequired();
-
-        builder.Property(u => u.Senha)
-            .HasMaxLength(250)
-            .IsRequired();
-
-        builder.Property(u => u.Email)
             .HasMaxLength(250)
             .IsRequired();
     }

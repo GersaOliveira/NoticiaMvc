@@ -6,11 +6,8 @@ public class Noticia
     public string Titulo { get; set; } = string.Empty;
     public string Texto { get; set; } = string.Empty;
 
-    // Chave estrangeira para Usuario
-    public int UsuarioId { get; set; }
-    // Propriedade de navegação para Usuario
+    public string UsuarioId { get; set; }
     public Usuario Usuario { get; set; } = null!;
 
-    // Propriedade de navegação para a tabela de junção
     public ICollection<NoticiaTag> NoticiaTags { get; set; } = new List<NoticiaTag>();
 }

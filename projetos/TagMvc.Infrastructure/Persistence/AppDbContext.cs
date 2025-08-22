@@ -1,16 +1,16 @@
 using Microsoft.EntityFrameworkCore;
 using TagMvc.Domain.Entities;
 using System.Reflection;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace TagMvc.Infrastructure.Persistence;
 
-public class AppDbContext : DbContext
+public class AppDbContext : IdentityDbContext<Usuario>
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
     }
 
-    public DbSet<Product> Products { get; set; }
     public DbSet<Tag> Tags { get; set; }
     public DbSet<Noticia> Noticias { get; set; }
     public DbSet<Usuario> Usuarios { get; set; }

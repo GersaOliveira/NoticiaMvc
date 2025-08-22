@@ -9,4 +9,5 @@ public interface ITagRepository
     Task AddAsync(Tag tag);
     void Update(Tag tag);
     void Remove(Tag tag);
+    Task<Tag?> GetByDescAsync(string nome);
 }

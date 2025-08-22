@@ -43,7 +43,6 @@ public class TagAppService : ITagAppService
         var tag = await _tagRepository.GetByIdAsync(command.Id);
         if (tag is null)
         {
-            // Lançar uma exceção ou tratar o caso de não encontrar a tag
             return;
         }
 

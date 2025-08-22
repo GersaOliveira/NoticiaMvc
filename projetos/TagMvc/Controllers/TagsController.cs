@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TagMvc.Application.Interfaces;
+using TagMvc.Application.Tags.Commands;
 using TagMvc.ViewModels.TagViewModels;
 
 namespace TagMvc.Controllers;
@@ -13,23 +14,25 @@ public class TagsController : Controller
         _tagAppService = tagAppService;
     }
 
-    // GET: Tags
     public async Task<IActionResult> Index()
     {
-        var tags = await _tagAppService.GetAllTagsAsync();
-        return View(tags);
+        var tagsDto = await _tagAppService.GetAllTagsAsync();
+        var viewModels = tagsDto.Select(dto => new TagViewModel
+        {
+            Id = dto.Id,
+            Descricao = dto.Descricao
+        });
+        return View(viewModels);
     }
 
-    // GET: Tags/Create
     public IActionResult Create()
     {
         return View();
     }
 
-    // POST: Tags/Create
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create(TagViewModel viewModel)
+    public async Task<IActionResult> Create(CreateTagViewModel viewModel)
     {
         if (ModelState.IsValid)
         {
@@ -40,7 +43,6 @@ public class TagsController : Controller
         return View(viewModel);
     }
 
-    // GET: Tags/Edit/5
     public async Task<IActionResult> Edit(int id)
     {
         var tagDto = await _tagAppService.GetTagByIdAsync(id);
@@ -48,14 +50,19 @@ public class TagsController : Controller
         {
             return NotFound();
         }
-        var viewModel = new TagViewModel { Id = tagDto.Id, Descricao = tagDto.Descricao };
+
+        var viewModel = new EditTagViewModel
+        {
+            Id = tagDto.Id,
+            Descricao = tagDto.Descricao
+        };
+
         return View(viewModel);
     }
 
-    // POST: Tags/Edit/5
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, TagViewModel viewModel)
+    public async Task<IActionResult> Edit(int id, EditTagViewModel viewModel)
     {
         if (id != viewModel.Id)
         {
@@ -64,14 +71,20 @@ public class TagsController : Controller
 
         if (ModelState.IsValid)
         {
-            var command = new UpdateTagCommand { Id = viewModel.Id, Descricao = viewModel.Descricao };
-            await _tagAppService.UpdateTagAsync(command);
+            try
+            {
+                var command = new UpdateTagCommand { Id = viewModel.Id, Descricao = viewModel.Descricao };
+                await _tagAppService.UpdateTagAsync(command);
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
             return RedirectToAction(nameof(Index));
         }
         return View(viewModel);
     }
 
-    // GET: Tags/Delete/5
     public async Task<IActionResult> Delete(int id)
     {
         var tagDto = await _tagAppService.GetTagByIdAsync(id);
@@ -79,10 +92,11 @@ public class TagsController : Controller
         {
             return NotFound();
         }
-        return View(tagDto);
+
+        var viewModel = new TagViewModel { Id = tagDto.Id, Descricao = tagDto.Descricao };
+        return View(viewModel);
     }
 
-    // POST: Tags/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)
