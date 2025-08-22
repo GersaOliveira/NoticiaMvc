@@ -1,3 +1,7 @@
+Login e senha da aplicação
+admin@localhost.com
+Admin@123
+
 1) No MVC, o que podemos fazer para enviar uma coleção de dados da classe Controller para a View?
 
 A melhor forma é usar um "ViewModel Fortemente Tipado".
