@@ -4,32 +4,93 @@
     ViewData["Title"] = "Criar Nova Notícia";
 }
 
-<h2>@ViewData["Title"]</h2>
+<h1>@ViewData["Title"]</h1>
 
 <hr />
 <div class="row">
     <div class="col-md-8">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form id="noticia-form" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger validation-summary-errors"></div>
+            
             <div class="form-group mb-3">
                 <label asp-for="Titulo" class="control-label"></label>
                 <input asp-for="Titulo" class="form-control" />
-                <span asp-validation-for="Titulo" class="text-danger"></span>
+                <span asp-for="Titulo" class="text-danger"></span>
             </div>
+            
             <div class="form-group mb-3">
                 <label asp-for="Texto" class="control-label"></label>
                 <textarea asp-for="Texto" class="form-control" rows="10"></textarea>
-                <span asp-validation-for="Texto" class="text-danger"></span>
+                <span asp-for="Texto" class="text-danger"></span>
             </div>
-                 <div class="form-group mb-3">
+            
+            <div class="form-group mb-3">
                 <label asp-for="Tags" class="control-label"></label>
-                <input asp-for="Tags" class="form-control" placeholder="Ex: politica, brasil, eleicoes" />
-                <span asp-validation-for="Tags" class="text-danger"></span>
+                <input asp-for="Tags" class="form-control" placeholder="esportes, politica, tecnologia" />
+                <span asp-for="Tags" class="text-danger"></span>
             </div>
+            
             <div class="form-group">
-                <input type="submit" value="Publicar" class="btn btn-primary" />
+                <input type="submit" value="Criar" class="btn btn-primary" />
                 <a asp-action="Index" asp-controller="Home" class="btn btn-secondary">Cancelar</a>
             </div>
         </form>
     </div>
 </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        $(function () {
+            $('#noticia-form').on('submit', function (e) {
+                e.preventDefault(); 
+
+                var form = $(this);
+                
+                form.find('.text-danger').text('');
+                var summary = form.find('.validation-summary-errors');
+                summary.find('ul').empty();
+                summary.hide();
+
+                if (form.valid()) { 
+                    $.ajax({
+                        url: form.attr('action'),
+                        type: 'POST',
+                        data: form.serialize(),
+                        success: function (response) {
+                            if (response.success) {
+                                // Redireciona para a URL de sucesso retornada pelo servidor
+                                window.location.href = response.redirectUrl;
+                            }
+                        },
+                        error: function (xhr) {
+                           
+                            var response = xhr.responseJSON;
+                            if (response && response.errors) {
+                                var summaryList = summary.find('ul');
+                                if (!summaryList.length) { summary.html('<ul></ul>'); summaryList = summary.find('ul'); }
+                                summary.show();
+                                $.each(response.errors, function (key, value) {
+                                    // A chave do JSON (key) vem em camelCase (ex: "titulo").
+                                    // O span de validação espera PascalCase (ex: "Titulo").
+                                    var fieldName = key.charAt(0).toUpperCase() + key.slice(1);
+                                    var fieldSpan = $('span[data-valmsg-for="' + fieldName + '"]');
+                                    if (fieldSpan.length) {
+                                        fieldSpan.text(value.join(', '));
+                                    } else {
+                                        // Se não houver um span específico, adiciona ao sumário
+                                        summaryList.append('<li>' + value.join(', ') + '</li>');
+                                    }
+                                });
+                            } else {
+                                // Erro genérico
+                                summary.show().find('ul').append('<li>Ocorreu um erro inesperado ao processar sua solicitação.</li>');
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}

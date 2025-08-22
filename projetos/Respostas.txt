@@ -1,0 +1,26 @@
+1) No MVC, o que podemos fazer para enviar uma coleção de dados da classe Controller para a View?
+
+A melhor forma é usar um "ViewModel Fortemente Tipado".
+
+1.  Cria-se uma classe (ViewModel) que representa os dados da tela.
+2.  No Controller, cria-se uma instância dessa classe, popula-se a coleção de dados e passa o objeto para a View.
+3.  Na View, declara-se o tipo do ViewModel com `@model` e acessa-se os dados de forma segura e com IntelliSense.
+
+---
+
+2) Precisamos validar os dados obrigatórios de um formulário. Como podemos fazer isso?
+
+A validação é feita em duas camadas:
+
+1.  Validação no Servidor (Obrigatória): usar "Data Annotations" (ex: `[Required]`, `[StringLength]`) nas propriedades do ViewModel. Na Action do Controller, verificar o`ModelState.IsValid`. Se for falso, a validação falhou e a tela é retornada com os erros.
+2.  Validação no Cliente (Experiência do Usuário): Usando bibliotecas como jQuery Validate, a validação ocorre no navegador antes do envio, dando feedback imediato ao usuário.
+
+---
+
+3) Como podemos armazenar configurações (connectionString, etc) que variam com o ambiente?
+
+Usar uma hierarquia de arquivos de configuração:
+
+*  appsettings.json`:** Para configurações comuns a todos os ambientes.
+*  appsettings.Development.json`:** Para configurações específicas de desenvolvimento.
+*  appsettings.Production.json`:** Para configurações de produção.

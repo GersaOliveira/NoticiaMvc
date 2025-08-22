@@ -20,7 +20,7 @@ public class TagAppService : ITagAppService
     public async Task<IEnumerable<TagDto>> GetAllTagsAsync()
     {
         var tags = await _tagRepository.GetAllAsync();
-        // Em um projeto real, use uma biblioteca como o AutoMapper para isso.
+        // em um projeto real melhor usar o AutoMapper, como estou com o tempo curto, fiz dessa forma.
         return tags.Select(t => new TagDto { Id = t.Id, Descricao = t.Descricao });
     }
 

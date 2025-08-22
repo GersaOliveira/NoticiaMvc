@@ -36,58 +36,19 @@ namespace TagMvc.Controllers
                 var userId = _userManager.GetUserId(User);
                 if (userId == null)
                 {
-                    return Unauthorized();
+                    return Forbid();
                 }
 
-                var noticia = new Noticia
-                {
-                    Titulo = model.Titulo,
-                    Texto = model.Texto,
-                    UsuarioId = userId,
-                };
-
+                var noticia = new Noticia { Titulo = model.Titulo, Texto = model.Texto, UsuarioId = userId };
                 await _noticiaService.AddAsync(noticia, model.Tags);
 
-                return RedirectToAction("Index", "Home");
+                return Json(new { success = true, redirectUrl = Url.Action("Index", "Home") });
             }
-            return View(model);
+
+            var errors = ModelState.ToDictionary(kvp => kvp.Key, kvp => kvp.Value.Errors.Select(e => e.ErrorMessage).ToArray()).Where(m => m.Value.Any());
+            return BadRequest(new { errors });
         }
 
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var noticia = await _noticiaService.GetByIdAsync(id.Value);
-            if (noticia == null)
-            {
-                return NotFound();
-            }
-
-            if (noticia.UsuarioId != _userManager.GetUserId(User))
-            {
-                return Forbid(); 
-            }
-
-            return View(noticia);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var noticia = await _noticiaService.GetByIdAsync(id);
-            if (noticia?.UsuarioId != _userManager.GetUserId(User))
-            {
-                return Forbid();
-            }
-
-            await _noticiaService.RemoveAsync(id);
-            return RedirectToAction("Index", "Home");
-        }
-        
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -138,9 +99,37 @@ namespace TagMvc.Controllers
                 noticiaToUpdate.Texto = model.Texto;
 
                 await _noticiaService.UpdateAsync(noticiaToUpdate, model.Tags);
-                return RedirectToAction("Index", "Home");
+                return Json(new { success = true, redirectUrl = Url.Action("Index", "Home") });
             }
-            return View(model);
+
+            var errors = ModelState.ToDictionary(kvp => kvp.Key, kvp => kvp.Value.Errors.Select(e => e.ErrorMessage).ToArray()).Where(m => m.Value.Any());
+            return BadRequest(new { errors });
+        }
+
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var noticia = await _noticiaService.GetByIdAsync(id.Value);
+            if (noticia == null)
+            {
+                return NotFound();
+            }
+
+            return View(noticia);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            await _noticiaService.RemoveAsync(id);
+            return RedirectToAction("Index", "Home");
         }
     }
 }

@@ -1,0 +1,53 @@
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio temporary files
+*.vs/
+.vs/
+
+# Rider temporary files
+.idea/
+
+## Build results
+
+# Folders
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# Files
+*.log
+*.tlog
+*.pdb
+*.exe
+*.dll
+*.obj
+*.ilk
+*.aps
+*.ncb
+*.suo
+*.user
+*.build-amd64.props
+*.build-amd64.targets
+*.build-arm.props
+*.build-arm.targets
+*.build-arm64.props
+*.build-arm64.targets
+*.build-x86.props
+*.build-x86.targets
+
+# Visual Studio code coverage results
+*.coverage
+*.coveragexml
